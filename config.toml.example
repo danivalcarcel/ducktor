@@ -8,6 +8,7 @@ port               = 8001
 endpoint           = "health"
 match              = 200
 interval           = 3
+timeout            = 2
 healthyThreshold   = 5
 unHealthyThreshold = 5
 
