@@ -43,8 +43,9 @@ func HealthCheckerFrom(config HealthCheck) (HealthChecker, error) {
 		}, nil
 	case "tcp":
 		return &TCPChecker{
-			Host: config.Host,
-			Port: config.Port,
+			Host:    config.Host,
+			Port:    config.Port,
+			Timeout: config.Timeout,
 		}, nil
 	default:
 		return nil, fmt.Errorf("unsupported interface: %s", config.Interface)

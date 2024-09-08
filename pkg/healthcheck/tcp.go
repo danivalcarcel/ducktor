@@ -7,13 +7,18 @@ import (
 )
 
 type TCPChecker struct {
-	Host string
-	Port int
+	Host    string
+	Port    int
+	Timeout time.Duration
 }
 
 func (t *TCPChecker) CheckHealth() HealthCheckResult {
+	var netClient = &net.Dialer{
+		Timeout: time.Second * t.Timeout,
+	}
+
 	start := time.Now()
-	conn, err := net.Dial("tcp", fmt.Sprintf("%s:%d", t.Host, t.Port))
+	conn, err := netClient.Dial("tcp", fmt.Sprintf("%s:%d", t.Host, t.Port))
 	response_time := time.Since(start)
 	isHealthy := false
 
