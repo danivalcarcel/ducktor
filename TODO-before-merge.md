@@ -1,3 +1,2 @@
-- Add timeout for TCP Check
 - Return error on start if timeout > interval
 - Set timeout config as optional?
