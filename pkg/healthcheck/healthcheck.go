@@ -12,6 +12,7 @@ type HealthCheck struct {
 	HealthyThreshold   int
 	UnHealthyThreshold int
 	Interval           int
+	Timeout            time.Duration
 
 	Host     string
 	Port     int
@@ -38,6 +39,7 @@ func HealthCheckerFrom(config HealthCheck) (HealthChecker, error) {
 			Port:     config.Port,
 			Protocol: config.Interface,
 			Match:    config.Match,
+			Timeout:  config.Timeout,
 		}, nil
 	case "tcp":
 		return &TCPChecker{

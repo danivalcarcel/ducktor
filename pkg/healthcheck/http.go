@@ -14,6 +14,7 @@ type HTTPChecker struct {
 	Port     int
 	Endpoint string
 	Match    int
+	Timeout	 time.Duration
 }
 
 func (h *HTTPChecker) CheckHealth() HealthCheckResult {
@@ -33,8 +34,12 @@ func (h *HTTPChecker) CheckHealth() HealthCheckResult {
 		url.WriteString(h.Endpoint)
 	}
 
+	var netClient = &http.Client{
+		Timeout: time.Second * h.Timeout,
+	}
+
 	start := time.Now()
-	resp, err := http.Get(url.String())
+	resp, err := netClient.Get(url.String())
 	responseTime := time.Since(start)
 
 	if err == nil && resp.StatusCode != h.Match {
