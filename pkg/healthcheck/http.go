@@ -34,12 +34,12 @@ func (h *HTTPChecker) CheckHealth() HealthCheckResult {
 		url.WriteString(h.Endpoint)
 	}
 
-	var netClient = &http.Client{
+	var httpClient = &http.Client{
 		Timeout: time.Second * h.Timeout,
 	}
 
 	start := time.Now()
-	resp, err := netClient.Get(url.String())
+	resp, err := httpClient.Get(url.String())
 	responseTime := time.Since(start)
 
 	if err == nil && resp.StatusCode != h.Match {
