@@ -27,5 +27,6 @@ interface          = "http"
 host               = "www.google.com"
 match              = 200
 interval           = 3
+timeout            = 2
 healthyThreshold   = 2
 unHealthyThreshold = 5
