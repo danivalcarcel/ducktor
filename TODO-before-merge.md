@@ -1,2 +1,3 @@
 - Return error on start if timeout > interval
 - Set timeout config as optional?
+- Fix INFO Service healthcheck returning ms instead of seconds
